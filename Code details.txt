@@ -1,0 +1,9 @@
+
+This Terraform configuration is written for AWS cloud provider with provider version "~> 5.0" and Terraform version "v1.12.1".
+This TF code can be used to provision below AWS resources...
+
+- VPC [ Subnets(Public/Private), Route Tables, IGW ]
+- Security Groups
+- EC2
+
+Note: Change the variables/tfvars values as per your need...
