@@ -1,4 +1,4 @@
-region = "us-east-1"
+region = "ap-south-1"
 vpc-cidr-block = "192.168.0.0"
 vpc-cidr-netmask = 16
 ec2-instance-type = "t2.micro"

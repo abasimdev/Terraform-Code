@@ -32,7 +32,7 @@ variable "subnet-map-public-ip-on-launch" {
 
 # EC2 Variables
 variable "ec2-instance-type" {
-  default = "t2.medium"
+  default = "t2.micro"
 }
 variable "ec2-name" {
   default = "OnlineBookStore-EC2"
