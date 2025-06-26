@@ -48,7 +48,8 @@ variable "sg-outbound-cidr-ipv4" {
 }
 
 variable "sg-inbound-ports" {
-  type    = list(string)
+  type = list(string)
+  # General Rules/Ports required for a Tomcat Deployment
   default = [22, 80, 443, 8080, 8081] # SSH, HTTP, HTTPS, Tomcat, Nexus
 }
 
