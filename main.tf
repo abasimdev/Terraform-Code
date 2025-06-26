@@ -30,11 +30,13 @@ module "OnlineBS-ec2" {
 
   ec2-name = var.ec2-name
   # ec2-name = each.value
-  ec2-ami           = data.aws_ami.ubuntu.id
+  ec2-ami = "ami-0f918f7e67a3323f0"
+  # ec2-ami           = data.aws_ami.ubuntu.id
   ec2-instance-type = var.ec2-instance-type
   sg-id             = module.OnlineBS-sg.sg-id
   subnet-id         = module.OnlineBS-vpc.subnet-id-public-1-a
-  ec2-key-name      = data.aws_key_pair.key-pair.key_name # Create it from AWS console
+  ec2-key-name      = "aws-key"
+  # ec2-key-name      = data.aws_key_pair.key-pair.key_name # Create it from AWS console
 
   depends_on = [module.OnlineBS-vpc, module.OnlineBS-sg]
 
