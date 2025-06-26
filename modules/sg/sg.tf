@@ -21,6 +21,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
   for_each          = toset(var.sg-inbound-ports)
   security_group_id = aws_security_group.OnlineBS-sg.id
+  description       = "General Rules required for a Tomcat Deployment"
   cidr_ipv4         = var.sg-inbound-cidr-ipv4 # Allow All
   from_port         = each.value
   ip_protocol       = "tcp"
