@@ -1,7 +1,8 @@
 
 # Providers variables
 variable "region" {
-  default = "us-east-1"
+  default = "ap-south-1" # Mumbai Region
+  # region  = "us-east-1"  # N.Virginia Region
 }
 
 variable "access-key" {
