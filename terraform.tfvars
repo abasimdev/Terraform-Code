@@ -1,5 +1,5 @@
-region = "us-east-1" # N.Virginia Region
-# region            = "ap-south-1" # Mumbai Region
+# region = "us-east-1" # N.Virginia Region
+region            = "ap-south-1" # Mumbai Region
 vpc-cidr-block    = "192.168.0.0"
 vpc-cidr-netmask  = 16
 ec2-instance-type = "t2.micro"
