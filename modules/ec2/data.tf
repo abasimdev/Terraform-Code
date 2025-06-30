@@ -23,6 +23,6 @@ data "aws_ami" "ubuntu" {
 # }
 
 # Pull Key-pair by its name, created outside of TF to associate with ec2
-data "aws_key_pair" "key-pair" {
-  key_name = "aws-key"
-}
+# data "aws_key_pair" "key-pair" {
+#   key_name = "ec2-key"
+# }

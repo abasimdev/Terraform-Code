@@ -7,7 +7,7 @@ resource "aws_instance" "onlineBS-ec2" {
   instance_type          = var.ec2-instance-type
   vpc_security_group_ids = [var.sg-id]
   subnet_id              = var.subnet-id
-  key_name               = data.aws_key_pair.key-pair.key_name
+  key_name               = var.ec2-key-name
   # key_name               = aws_key_pair.onlineBS-ec2-key-pair.key_name
   # user_data              = file(local.user-data-file)
 
