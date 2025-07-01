@@ -5,13 +5,9 @@ variable "region" {
   # region  = "us-east-1"  # N.Virginia Region
 }
 
-variable "access-key" {
-  default = "AKIAWR4NTBDYDZ64QAQR"
-}
+variable "access-key" {}
 
-variable "secret-key" {
-  default = "K3CrVOLuG2UlxTgSNk0egofmGOeuWGoefV8aFcvP"
-}
+variable "secret-key" {}
 
 
 # VPC Variables
