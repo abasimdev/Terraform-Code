@@ -5,9 +5,9 @@ variable "region" {
   # region  = "us-east-1"  # N.Virginia Region
 }
 
-variable "access-key" {}
+# variable "access-key" {} # Commented because Passing from aws configure
 
-variable "secret-key" {}
+# variable "secret-key" {} # Commented because Passing from aws configure
 
 
 # VPC Variables
