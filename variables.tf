@@ -7,7 +7,9 @@ variable "region" {
 
 # variable "access-key" {} # Commented because Passing from aws configure
 
-# variable "secret-key" {} # Commented because Passing from aws configure
+# variable "secret-key" {
+#   sensitive = true
+# } # Commented because Passing from aws configure
 
 
 # VPC Variables
