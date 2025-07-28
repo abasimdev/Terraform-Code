@@ -31,7 +31,7 @@ variable "subnet-map-public-ip-on-launch" {
 
 # EC2 Variables
 variable "ec2-instance-type" {
-  default = "t2.micro"
+  default  = "t2.micro"
   nullable = false // Value must be passed
 }
 variable "ec2-name" {

@@ -24,22 +24,22 @@ module "OnlineBS-sg" {
 #////////// Security Group ENDS //////////
 
 #********** EC2 **********
-module "OnlineBS-ec2" {
-  # for_each = toset(var.ec2-name)
-  source = "./modules/ec2/"
+# module "OnlineBS-ec2" {
+#   # for_each = toset(var.ec2-name)
+#   source = "./modules/ec2/"
 
-  ec2-name = var.ec2-name
-  # ec2-name = each.value
-  ec2-ami = data.aws_ami.ubuntu.id
-  # ec2-ami = "ami-0f918f7e67a3323f0" # Ubuntu 24.04 LTS
+#   ec2-name = var.ec2-name
+#   # ec2-name = each.value
+#   ec2-ami = data.aws_ami.ubuntu.id
+#   # ec2-ami = "ami-0f918f7e67a3323f0" # Ubuntu 24.04 LTS
 
-  ec2-instance-type = var.ec2-instance-type
-  sg-id             = module.OnlineBS-sg.sg-id
-  subnet-id         = module.OnlineBS-vpc.subnet-id-public-1-a
-  ec2-key-name      = data.aws_key_pair.key-pair.key_name # Create it from AWS console
+#   ec2-instance-type = var.ec2-instance-type
+#   sg-id             = module.OnlineBS-sg.sg-id
+#   subnet-id         = module.OnlineBS-vpc.subnet-id-public-1-a
+#   ec2-key-name      = data.aws_key_pair.key-pair.key_name # Create it from AWS console
 
-  depends_on = [module.OnlineBS-vpc, module.OnlineBS-sg]
+#   depends_on = [module.OnlineBS-vpc, module.OnlineBS-sg]
 
-}
-#////////// EC2 ENDS //////////
+# }
+# #////////// EC2 ENDS //////////
 
