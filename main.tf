@@ -1,7 +1,7 @@
 
 #********** VPC **********
 module "OnlineBS-vpc" {
-  source                         = "./modules/vpc/"
+  source                         = "../modules/vpc"
   region                         = var.region
   vpc-cidr-block                 = var.vpc-cidr-block
   vpc-cidr-netmask               = var.vpc-cidr-netmask
@@ -12,7 +12,7 @@ module "OnlineBS-vpc" {
 
 #********** Security Group **********
 module "OnlineBS-sg" {
-  source                = "./modules/sg/"
+  source                = "../modules/sg"
   vpc-id                = module.OnlineBS-vpc.OnlineBS-vpc-id
   sg-outbound-cidr-ipv4 = var.sg-outbound-cidr-ipv4
   sg-inbound-ports      = var.sg-inbound-ports
@@ -26,7 +26,7 @@ module "OnlineBS-sg" {
 #********** EC2 **********
 # module "OnlineBS-ec2" {
 #   # for_each = toset(var.ec2-name)
-#   source = "./modules/ec2/"
+#   source = "../modules/ec2"
 
 #   ec2-name = var.ec2-name
 #   # ec2-name = each.value
