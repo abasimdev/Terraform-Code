@@ -6,6 +6,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+    backend "s3" {
+    bucket = "terraform-state-files-testing-ap-south-1"
+    key    = "prod/"
+    use_lockfile = true
+  }
 }
 
 # Configure the AWS Provider
