@@ -9,14 +9,28 @@ on:
   push:
     branches: [main, develop, feature/ecr]
     paths-ignore: ['.github/actions/**']
+
+permissions:
+  contents: read
+  id-token: write   # REQUIRED for OIDC
+
 jobs:
   init: 
     runs-on: ubuntu-latest
     steps:
-      - name: terraform init
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ap-south-1
+
+      - name: terraform Init
         run: terraform init
 
-      - name: terraform plan
+      - name: terraform Plan
         run: terraform plan
 
   apply:
@@ -27,7 +41,7 @@ jobs:
       - name: Deploy to production
         run: echo "Deploying Infrastructure to Production"
       
-      - name: terraform apply
+      - name: terraform Apply
         run: terraform apply --auto-approve
 
         
