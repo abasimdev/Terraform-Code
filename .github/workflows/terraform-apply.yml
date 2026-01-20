@@ -1,0 +1,32 @@
+---
+# Created by AB
+# Info: This is a CICD pipeline/workflow for Terraform Apply
+
+name: Terraform Apply
+
+on: 
+  workflow_dispatch:
+
+    
+jobs:
+  init: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: terraform init
+        run: terraform init
+
+      - name: terraform plan
+        run: terraform plan
+
+  apply:
+    runs-on: ubuntu-latest
+    needs: init
+    environment: production # To trigger manual confirmation
+    steps:
+      - name: Deploy to production
+        run: echo "Deploying Infrastructure to Production"
+      
+      - name: terraform apply
+        run: terraform apply --auto-approve
+
+        
