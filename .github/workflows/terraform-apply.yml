@@ -1,0 +1,50 @@
+---
+# Created by AB
+# Info: This is a CICD pipeline/workflow for Terraform Apply
+
+name: Terraform Apply
+
+on: 
+  workflow_dispatch:
+  push:
+    branches: [main, develop, feature/ecr]
+    paths-ignore: ['.github/actions/**']
+
+permissions:
+  contents: read
+  id-token: write   # REQUIRED for OIDC
+
+jobs:
+  init: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ap-south-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        
+      - name: terraform Init
+        run: terraform init
+
+      - name: terraform Plan
+        run: terraform plan
+
+  apply:
+    runs-on: ubuntu-latest
+    needs: init
+    environment: production # To trigger manual confirmation
+    steps:
+      - name: Deploy to production
+        run: echo "Deploying Infrastructure to Production"
+      
+      - name: terraform Apply
+        run: terraform apply --auto-approve
+
+        
