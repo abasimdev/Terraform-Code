@@ -6,8 +6,9 @@ name: Terraform Apply
 
 on: 
   workflow_dispatch:
-
-    
+  push:
+    branches: [main]
+    paths-ignore: ['.github/actions/**']
 jobs:
   init: 
     runs-on: ubuntu-latest
