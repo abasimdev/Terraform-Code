@@ -34,7 +34,32 @@ jobs:
         run: terraform init
 
       - name: terraform Plan
-        run: terraform plan
+        run: terraform plan -out tfplan
+
+      - name: tfpaln to plain text
+        run: terraform show -no-color tfplan > tfplan.txt
+        
+      - name: Show plan in Job Summary (plain text)
+        run: |
+          echo "## 📄 Terraform Plan (Plain Text)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Environment: PROD" >> $GITHUB_STEP_SUMMARY
+          echo "Branch: $GITHUB_REF_NAME" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "----------------------------------------" >> $GITHUB_STEP_SUMMARY
+          sed -n '1,500p' tfplan.txt >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "_(Plan truncated if longer than 500 lines — download artifact for full output)_" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload plan artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: |
+            tfplan
+            tfplan.txt
+            if-no-files-found: error
+            retention-days: 7
 
   apply:
     runs-on: ubuntu-latest
@@ -55,8 +80,17 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+
+      - name: terraform Init
+        run: terraform init
+      
+      - name: Download approved plan
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan
+
       
       - name: terraform Apply
-        run: terraform apply --auto-approve
+        run: terraform apply -no-color -input=false tfplan
 
         
