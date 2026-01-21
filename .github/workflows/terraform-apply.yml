@@ -6,9 +6,9 @@ name: Terraform Apply
 
 on: 
   workflow_dispatch:
-  push:
-    branches: [main, develop, feature/ecr]
-    paths-ignore: ['.github/actions/**']
+  # push:
+  #   branches: [main, develop, feature/ecr]
+  #   paths-ignore: ['.github/actions/**']
 
 permissions:
   contents: read
