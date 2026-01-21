@@ -91,6 +91,6 @@ jobs:
 
       
       - name: terraform Apply
-        run: terraform apply -no-color -input=false tfplan
+        run: terraform apply -input=false tfplan
 
         
